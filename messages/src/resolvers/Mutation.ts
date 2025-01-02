@@ -5,6 +5,7 @@ export const Mutation: Resolvers = {
     createConversation: async (_, { recipientId }, { dataSources, userId }) => {
       return dataSources.db.createNewConversation({ userId, recipientId })
     },
+    /* UNCOMMENT LINES 9-33 */
     // sendMessage: async (_, { message }, { dataSources, userId }) => {
     //   const { conversationId, text } = message;
     //   const {

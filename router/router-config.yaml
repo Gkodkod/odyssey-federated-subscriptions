@@ -1,4 +1,4 @@
-# This file dictates the settings the router should use when running
+# This file specifies the settings the router should use when running
 supergraph:
   listen: 127.0.0.1:4000
 include_subgraph_errors:
@@ -11,4 +11,4 @@ headers:
   all:
     request:
       - propagate:
-          named: "Authorization"
+          named: 'Authorization'

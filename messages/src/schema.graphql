@@ -2,41 +2,41 @@ extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.8", import: ["@key"])
 
 type Query {
-  # Retrieve all conversations for the logged-in user
+  "Retrieve all conversations for the logged-in user"
   conversations: [Conversation]
-  # Retrieves your conversation with a given recipient
+  "Retrieves your conversation with a given recipient"
   conversation(recipientId: ID!): Conversation
 }
 
 type Mutation {
-  # Initiate a new conversation with a particular user
+  "Initiate a new conversation with a particular user"
   createConversation(recipientId: ID!): Conversation
 }
 
 type Conversation {
   id: ID!
-  # The messages belonging to the conversation
+  "The messages belonging to the conversation"
   messages: [Message]
-  # The timestamp from when the conversation was created
+  "The timestamp from when the conversation was created"
   createdAt: String!
 }
 
 type Message {
   id: ID!
-  # The text content of the message
+  "The text content of the message"
   text: String!
-  # The user that sent the message
+  "The user that sent the message"
   sentFrom: User!
-  # The user the message was sent to
+  "The user the message was sent to"
   sentTo: User!
-  # The timestamp of when the message was sent
+  "The timestamp of when the message was sent"
   sentTime: String
 }
 
 input NewMessageInput {
-  # The text content of the message
+  "The text content of the message"
   text: String!
-  # The ID of the conversation
+  "The ID of the conversation"
   conversationId: String!
 }
 
