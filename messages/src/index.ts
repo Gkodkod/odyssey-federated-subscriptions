@@ -23,7 +23,9 @@ async function main() {
     schema: buildSubgraphSchema({ typeDefs, resolvers }),
     plugins: [
       ApolloServerPluginSubscriptionCallback(
-       // {embed: true}
+        // {embed: true}
+        // Optional: increase timeout if needed
+        //{ heartbeatIntervalMs: 15000 }
       )
     ]
   });

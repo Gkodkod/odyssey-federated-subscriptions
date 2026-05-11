@@ -2,32 +2,42 @@
 
 sandbox:
   enabled: true
+
 supergraph:
   listen: "0.0.0.0:4000"
+
 include_subgraph_errors:
   all: true
+
 telemetry:
   instrumentation:
     spans:
       mode: spec_compliant
+
 headers:
   all:
     request:
       - propagate:
-          named: 'Authorization'
+          named: "Authorization"
+
 cors:
   policies:
     - origins:
+        - http://localhost:3000
+        - http://127.0.0.1:3000
         - https://sandbox.embed.apollographql.com
         - https://studio.apollographql.com
-    - allow_credentials: true
-
+      methods:
+        - GET
+        - POST
+        - OPTIONS
+      allow_credentials: true
 
 subscription:
   enabled: true
   mode:
     callback:
-      public_url: http://localhost:4005/callback
+      public_url: http://127.0.0.1:4000/callback
       listen: 0.0.0.0:4005
       path: /callback
       heartbeat_interval: 15s
