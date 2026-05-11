@@ -1,6 +1,11 @@
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.8", import: ["@key"])
 
+type Subscription {
+  "Subscribe to new messages in a conversation"
+  messageInConversation(id: ID!): Message
+}
+
 type Query {
   "Retrieve all conversations for the logged-in user"
   conversations: [Conversation]
@@ -11,6 +16,8 @@ type Query {
 type Mutation {
   "Initiate a new conversation with a particular user"
   createConversation(recipientId: ID!): Conversation
+  "Submit a new message to a specified conversation"
+  sendMessage(message: NewMessageInput!): Message
 }
 
 type Conversation {

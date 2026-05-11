@@ -28,6 +28,7 @@ export class PrismaDbClient {
           text,
           senderId: userId,
           receiverId: recipient,
+          conversationId,
           sentTime: new Date(),
         }
       })

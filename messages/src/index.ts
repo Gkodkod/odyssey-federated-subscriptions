@@ -22,7 +22,9 @@ async function main() {
   const server = new ApolloServer({
     schema: buildSubgraphSchema({ typeDefs, resolvers }),
     plugins: [
-      ApolloServerPluginSubscriptionCallback()
+      ApolloServerPluginSubscriptionCallback(
+       // {embed: true}
+      )
     ]
   });
   const { url } = await startStandaloneServer(server, {
