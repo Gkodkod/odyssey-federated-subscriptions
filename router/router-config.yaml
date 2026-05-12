@@ -40,6 +40,7 @@ subscription:
       public_url: http://127.0.0.1:4000/callback
       listen: 0.0.0.0:4005
       path: /callback
-      heartbeat_interval: 15s
+      #heartbeat_interval: 15s
+      heartbeat_interval: disabled
       subgraphs:
         - messages

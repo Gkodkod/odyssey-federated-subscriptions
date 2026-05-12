@@ -1,5 +1,5 @@
 extend schema
-  @link(url: "https://specs.apollo.dev/federation/v2.8", import: ["@key"])
+  @link(url: "https://specs.apollo.dev/federation/v2.8", import: ["@key", "@requires", "@external"])
 
 type Subscription {
   "Subscribe to new messages in a conversation"
@@ -49,4 +49,9 @@ input NewMessageInput {
 
 type User @key(fields: "id") {
   id: ID!
+  isOnline: Boolean! @requires(fields: "lastActiveTime isLoggedIn")
+  "The last recorded activity timestamp of the user"
+  lastActiveTime: String @external
+  "Whether or not a user is logged in"
+  isLoggedIn: Boolean! @external
 }

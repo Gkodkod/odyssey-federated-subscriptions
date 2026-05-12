@@ -1,16 +1,25 @@
-import { withFilter } from "graphql-subscriptions";
-import { Resolvers } from "../__generated__/resolvers-types";
+import { Resolvers } from '../__generated__/resolvers-types';
+import { withFilter } from 'graphql-subscriptions';
+
 
 export const Subscription: Resolvers = {
   Subscription: {
     messageInConversation: {
-      // @ts-ignore
       subscribe: withFilter(
-        (_, __, { pubsub }) => (pubsub as any).asyncIterator("NEW_MESSAGE_SENT"),
-        (payload: any, variables: any) => {
-          return payload.messageInConversation.conversationId === variables.id;
+        (_, { id }, { pubsub }) => {
+          console.log(`[DEBUG] Subscribing to conversation`);
+          return (pubsub as any).asyncIterator('NEW_MESSAGE_SENT');
+        },
+        (payload, variables) => {
+          const conversationId =
+            (payload as any)?.conversationId ||
+            (payload as any)?.messageInConversation?.conversationId;
+
+          console.log(`[DEBUG] Subscribing to conversation ${conversationId}`);
+          console.log(`[DEBUG] Filtering: ${conversationId} === ${variables.id}`);
+          return conversationId === variables.id;
         }
       ),
-    },
+    }
   },
 };
